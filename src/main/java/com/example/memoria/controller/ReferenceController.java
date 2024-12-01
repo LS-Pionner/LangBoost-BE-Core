@@ -2,12 +2,13 @@ package com.example.memoria.controller;
 
 import com.example.memoria.dto.ReferenceRequestDto;
 import com.example.memoria.dto.ReferenceResponseDto;
-import com.example.memoria.response.ApiResponse;
-import com.example.memoria.response.CustomException;
 import com.example.memoria.service.ReferenceService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
+
+import com.example.api.response.ApiResponse;
+
 
 @Slf4j
 @CrossOrigin

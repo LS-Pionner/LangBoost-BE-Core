@@ -2,13 +2,14 @@ package com.example.memoria.controller;
 
 import com.example.memoria.dto.WordRequestDto;
 import com.example.memoria.dto.WordResponseDto;
-import com.example.memoria.response.ApiResponse;
 import com.example.memoria.service.WordService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
+import com.example.api.response.ApiResponse;
 
 @Slf4j
 @CrossOrigin

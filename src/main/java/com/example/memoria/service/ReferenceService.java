@@ -6,10 +6,11 @@ import com.example.memoria.entity.Reference;
 import com.example.memoria.entity.Sentence;
 import com.example.memoria.repository.ReferenceRepository;
 import com.example.memoria.repository.SentenceRepository;
-import com.example.memoria.response.CustomException;
 import com.example.memoria.response.ErrorCode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import com.example.api.response.CustomException;
 
 @Service
 @RequiredArgsConstructor

@@ -17,9 +17,9 @@ public class Word {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    // 다른 MSA 서버의 사용자 ID
+    @Column(name = "user_id", nullable = false)
+    private Long userId; // 외래 키는 아니지만, 다른 MSA 시스템의 ID를 저장
 
     @ManyToOne
     @JoinColumn(name = "sentence_id", nullable = false)

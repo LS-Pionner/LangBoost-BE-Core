@@ -19,6 +19,10 @@ public class Sentence {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    // 다른 MSA 서버의 사용자 ID
+    @Column(name = "user_id", nullable = false)
+    private Long userId; // 외래 키는 아니지만, 다른 MSA 시스템의 ID를 저장
+
     @Column(nullable = false)
     private String sentence;
 
@@ -29,10 +33,6 @@ public class Sentence {
 
     @Column(nullable = false)
     private LocalDate lastViewedDate;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user; // User 엔티티와 관계 설정
 
     @OneToMany(mappedBy = "sentence", cascade = CascadeType.ALL)
     private List<Word> words;

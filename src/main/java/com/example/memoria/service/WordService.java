@@ -3,19 +3,20 @@ package com.example.memoria.service;
 import com.example.memoria.dto.WordRequestDto;
 import com.example.memoria.dto.WordResponseDto;
 import com.example.memoria.entity.Sentence;
-import com.example.memoria.entity.User;
 import com.example.memoria.entity.Word;
 import com.example.memoria.repository.SentenceRepository;
-import com.example.memoria.repository.UserRepository;
 import com.example.memoria.repository.WordRepository;
-import com.example.memoria.response.CustomException;
 import com.example.memoria.response.ErrorCode;
 import com.example.memoria.util.DateUtil;
+import com.example.memoria.util.PassportUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
+
+import com.example.api.response.CustomException;
+
 
 
 @Service
@@ -23,7 +24,6 @@ import java.util.stream.Collectors;
 public class WordService {
 
     private final WordRepository wordRepository;
-    private final UserRepository userRepository;
     private final SentenceRepository sentenceRepository;
 
     public WordResponseDto getWordById(Long wordId) {
@@ -34,9 +34,7 @@ public class WordService {
     }
 
     public WordResponseDto createWord(WordRequestDto requestDto) {
-        Long userId = 1L;
-        User user = userRepository.findById(userId)
-                .orElseThrow(() -> new CustomException(ErrorCode.ID_NOT_FOUND_USER));
+        Long userId = PassportUtil.getUserId();
 
         Sentence sentence = sentenceRepository.findById(requestDto.sentenceId())
                         .orElseThrow(() -> new CustomException(ErrorCode.ID_NOT_FOUND_SENTENCE));
@@ -45,7 +43,7 @@ public class WordService {
                 .word(requestDto.word())
                 .description(requestDto.description())
                 .lastViewedDate(DateUtil.getLastViewedDate())
-                .user(user)
+                .userId(userId)
                 .sentence(sentence)
                 .build();
 

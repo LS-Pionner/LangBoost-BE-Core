@@ -4,7 +4,6 @@ import com.example.memoria.dto.PagingResponseDto;
 import com.example.memoria.dto.Passport;
 import com.example.memoria.dto.SentenceRequestDto;
 import com.example.memoria.dto.SentenceResponseDto;
-import com.example.memoria.response.ApiResponse;
 import com.example.memoria.service.SentenceService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -13,6 +12,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
+
+import com.example.api.response.ApiResponse;
 
 @Slf4j
 @CrossOrigin
