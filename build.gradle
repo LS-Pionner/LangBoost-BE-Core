@@ -15,7 +15,14 @@ java {
 
 repositories {
 	mavenCentral()
-	mavenLocal()
+//	mavenLocal()
+	maven {
+		url = uri("https://maven.pkg.github.com/LS-Pionner/LangBoost-BE-Core")
+		credentials {
+			username = project.findProperty("gpr.user") ?: System.getenv("GITHUB_ACTOR")
+			password = project.findProperty("gpr.token") ?: System.getenv("GITHUB_TOKEN")
+		}
+	}
 }
 
 dependencies {
@@ -39,7 +46,7 @@ dependencies {
 	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.1.0'
 
 	// 로컬 저장소에서 mylibrary 의존성 추가
-	implementation 'practice.example:api-response-library:1.0.0'
+	implementation 'com.practice:api-response-library:1.0.0'
 
 	// Test dependencies
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
