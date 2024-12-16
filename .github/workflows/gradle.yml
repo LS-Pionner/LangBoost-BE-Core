@@ -28,6 +28,11 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
 
+    # Gradle 실행 권한 부여
+    - name: Grant execute permission to gradlew
+      run: chmod +x ./gradlew
+
+    # Gradle 설정
     # Configure Gradle for optimal use in GitHub Actions, including caching of downloaded dependencies.
     # See: https://github.com/gradle/actions/blob/main/setup-gradle/README.md
     - name: Setup Gradle
