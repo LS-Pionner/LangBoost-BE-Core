@@ -41,7 +41,7 @@ jobs:
       # Gradle 빌드 및 테스트 실행
     - name: Build and Test with Gradle Wrapper
       run: ./gradlew build test  # `test`는 테스트 실행을 위한 Gradle 작업입니다.
-      with:
+      env:
         GPR_USER: ${{ secrets.GPR_USER }}  # GitHub Secrets에서 설정한 사용자명
         GPR_TOKEN: ${{ secrets.GPR_TOKEN }}  # GitHub Secrets에서 설정한 액세스 토큰
 
