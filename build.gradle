@@ -17,10 +17,10 @@ repositories {
 	mavenCentral()
 //	mavenLocal()
 	maven {
-		url = uri("https://maven.pkg.github.com/LS-Pionner/LangBoost-BE-Core")
+		url = uri("https://maven.pkg.github.com/LS-Pionner/LangBoost-BE-api-response-library")
 		credentials {
-			username = project.findProperty("gpr.user") ?: System.getenv("GITHUB_ACTOR")
-			password = project.findProperty("gpr.token") ?: System.getenv("GITHUB_TOKEN")
+			username = project.findProperty("gpr.user") ?: System.getenv("GPR_USER")
+			password = project.findProperty("gpr.token") ?: System.getenv("GPR_TOKEN")
 		}
 	}
 }
@@ -45,8 +45,8 @@ dependencies {
 	// Springdoc OpenAPI 3
 	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.1.0'
 
-	// 로컬 저장소에서 mylibrary 의존성 추가
-	implementation 'com.practice:api-response-library:1.0.0'
+	// Github 저장소에서  mylibrary 의존성 추가
+	implementation 'com.practice:api-response-library:1.0.1'
 
 	// Test dependencies
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
