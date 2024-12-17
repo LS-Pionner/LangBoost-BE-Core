@@ -9,12 +9,21 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
+import org.springframework.beans.factory.annotation.Value;
+
+import java.util.List;
 
 @Slf4j
 @Component
-@AllArgsConstructor
 public class PassportInterceptor implements HandlerInterceptor {
     private final ObjectMapper objectMapper;
+    private final String currentEnvironment;  // 개발용 실행인지 확인
+
+    // 생성자 주입 방식으로 @Value 사용
+    public PassportInterceptor(ObjectMapper objectMapper, @Value("${spring.profiles.active}") String activeProfile) {
+        this.objectMapper = objectMapper;
+        this.currentEnvironment = activeProfile;
+    }
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
@@ -22,6 +31,15 @@ public class PassportInterceptor implements HandlerInterceptor {
         String passportHeader = request.getHeader("x-passport");
 
         log.info("PassportInterceptor - preHandle: Received x-passport header = {}", passportHeader);
+
+        // 개발 테스트 시 passport 없이도 가능
+        if ("dev".equals(currentEnvironment) && passportHeader == null) {
+            log.warn("PassportInterceptor - preHandle: Dev mode active, injecting default Passport");
+            // Passport 임의로 설정
+            Passport defaultPassport = new Passport(1L, "example@example@com");
+            RequestContextUtil.setPassport(defaultPassport);
+            return true;
+        }
 
         if (passportHeader != null) {
             try {
