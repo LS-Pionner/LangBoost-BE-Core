@@ -46,5 +46,9 @@ public class Sentence {
         this.description = newDescription;
     }
 
+    public void updateLastViewedDate(LocalDate newLastViewedDate) {
+        this.lastViewedDate = newLastViewedDate;
+    }
+
 }
 

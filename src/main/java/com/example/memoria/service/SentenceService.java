@@ -5,6 +5,7 @@ import com.example.memoria.dto.Passport;
 import com.example.memoria.dto.SentenceRequestDto;
 import com.example.memoria.dto.SentenceResponseDto;
 import com.example.memoria.entity.Sentence;
+import com.example.memoria.events.SentenceViewedEvent;
 import com.example.memoria.repository.SentenceRepository;
 import com.example.memoria.response.ErrorCode;
 import com.example.memoria.util.DateUtil;
@@ -16,6 +17,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.context.ApplicationEventPublisher;
+
 
 import com.example.api.response.CustomException;
 
@@ -29,10 +32,14 @@ import java.util.Optional;
 public class SentenceService {
 
     private final SentenceRepository sentenceRepository;
+    private final ApplicationEventPublisher eventPublisher;
 
     public SentenceResponseDto getSentenceById(Long sentenceId) {
         Sentence sentence = sentenceRepository.findById(sentenceId)
                 .orElseThrow(() -> new CustomException(ErrorCode.ID_NOT_FOUND_SENTENCE));
+
+        // 문장 조회 후 최근 조회 이벤트 발생
+        eventPublisher.publishEvent(new SentenceViewedEvent(sentenceId));
 
         return new SentenceResponseDto(sentence);
     }

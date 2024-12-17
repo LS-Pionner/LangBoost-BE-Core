@@ -24,49 +24,13 @@ public class SentenceController {
 
     private final SentenceService sentenceService;
 
-
     @GetMapping("/sentence/{sentenceId}")
-    public ApiResponse<SentenceResponseDto> getSentenceById(@PathVariable Long sentenceId,
-                                                            @RequestHeader(value = "x-passport", required = false) String passportHeader,
-                                                            @RequestHeader Map<String, String> allHeaders) throws JsonProcessingException {
-        // 모든 헤더 로그 출력
-        if (!allHeaders.isEmpty()) {
-            log.info("Received headers: {}", allHeaders);
-        }
-
-        // X-Passport 헤더 로그 출력
-        if (passportHeader != null) {
-            log.info("Passport header received: {}", passportHeader);
-
-            // JSON 문자열을 Passport 객체로 변환
-            ObjectMapper objectMapper = new ObjectMapper();
-            Passport passport = objectMapper.readValue(passportHeader, Passport.class);
-
-            log.info("Deserialized Passport object: {}", passport);
-        } else {
-            log.warn("No Passport header found in the request.");
-        }
-
-        // 실제 문장 조회 로직
+    public ApiResponse<SentenceResponseDto> getSentenceById(@PathVariable Long sentenceId) {
         log.info("Fetching sentence with ID: {}", sentenceId);
         SentenceResponseDto sentence = sentenceService.getSentenceById(sentenceId);
         log.info("Successfully fetched sentence: {}", sentence);
-
-        // 응답 반환
         return ApiResponse.ok(sentence);
     }
-
-
-
-
-
-//    @GetMapping("/sentence/{sentenceId}")
-//    public ApiResponse<SentenceResponseDto> getSentenceById(@PathVariable Long sentenceId) {
-//        log.info("Fetching sentence with ID: {}", sentenceId);
-//        SentenceResponseDto sentence = sentenceService.getSentenceById(sentenceId);
-//        log.info("Successfully fetched sentence: {}", sentence);
-//        return ApiResponse.ok(sentence);
-//    }
 
     @PostMapping("/sentence")
     public ApiResponse<SentenceResponseDto> createSentence(@RequestBody SentenceRequestDto requestDto) {
