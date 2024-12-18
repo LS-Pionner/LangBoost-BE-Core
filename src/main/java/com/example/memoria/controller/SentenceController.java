@@ -37,7 +37,7 @@ public class SentenceController {
         log.info("Creating a new sentence with request data: {}", requestDto);
         SentenceResponseDto createdSentence = sentenceService.createSentence(requestDto);
         log.info("Successfully created a new sentence with ID: {}", createdSentence.id());
-        return ApiResponse.ok(createdSentence);
+        return ApiResponse.created(createdSentence);
     }
 
     @PutMapping("/sentence/{sentenceId}")

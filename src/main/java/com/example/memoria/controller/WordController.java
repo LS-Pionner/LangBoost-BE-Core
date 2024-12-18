@@ -30,7 +30,7 @@ public class WordController {
     @PostMapping("/word")
     public ApiResponse<WordResponseDto> createWord(@RequestBody WordRequestDto requestDto) {
         WordResponseDto createdWord = wordService.createWord(requestDto);
-        return ApiResponse.ok(createdWord);
+        return ApiResponse.created(createdWord);
     }
 
     @PutMapping("/word/{wordId}")

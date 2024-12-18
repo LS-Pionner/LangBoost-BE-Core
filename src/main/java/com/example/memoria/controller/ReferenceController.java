@@ -28,7 +28,7 @@ public class ReferenceController {
     @PostMapping()
     public ApiResponse<ReferenceResponseDto> createReference(@RequestBody ReferenceRequestDto requestDto) {
         ReferenceResponseDto createdReference = referenceService.createReference(requestDto);
-        return ApiResponse.ok(createdReference);
+        return ApiResponse.created(createdReference);
     }
 
     // ReferenceController.java
