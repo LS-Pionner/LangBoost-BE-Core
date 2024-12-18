@@ -1,8 +1,11 @@
 package com.example.memoria.response;
 
+import com.example.api.response.ApiResponse;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpStatus;
 import static org.assertj.core.api.Assertions.assertThat;
+import com.example.api.response.ApiResponse;
+
 class ApiResponseTest {
 
     @Test
