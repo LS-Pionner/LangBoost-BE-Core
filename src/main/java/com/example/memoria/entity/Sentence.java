@@ -38,7 +38,7 @@ public class Sentence {
     private List<Word> words;
 
     @OneToOne(mappedBy = "sentence", cascade = CascadeType.ALL)
-    private Reference reference;
+    private Reference reference;    // Sentence -> Reference 단방향
 
     // 업데이트 메서드 추가
     public void updateSentence(String newSentence, String newDescription) {
