@@ -48,6 +48,13 @@ dependencies {
 	// Github 저장소에서  mylibrary 의존성 추가
 	implementation 'com.practice:api-response-library:1.0.1'
 
+	//AWS Parameter Store
+	implementation platform("io.awspring.cloud:spring-cloud-aws-dependencies:3.1.0")
+	implementation 'io.awspring.cloud:spring-cloud-aws-starter-parameter-store'
+
+	// Actuatotor
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+
 	// Test dependencies
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.mockito:mockito-core:5.4.0'
