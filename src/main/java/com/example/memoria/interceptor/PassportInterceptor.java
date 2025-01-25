@@ -33,7 +33,10 @@ public class PassportInterceptor implements HandlerInterceptor {
         log.info("PassportInterceptor - preHandle: Received x-passport header = {}", passportHeader);
 
         // 개발 테스트 시 passport 없이도 가능
-        if ("dev".equals(currentEnvironment) && passportHeader == null) {
+//        if ("dev".equals(currentEnvironment) && passportHeader == null) {
+        // 임시 설정
+        if (passportHeader == null) {
+
             log.warn("PassportInterceptor - preHandle: Dev mode active, injecting default Passport");
             // Passport 임의로 설정
             Passport defaultPassport = new Passport(1L, "example@example@com");
