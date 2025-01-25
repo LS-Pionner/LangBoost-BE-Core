@@ -12,7 +12,6 @@ import java.util.List;
 import com.example.api.response.ApiResponse;
 
 @Slf4j
-@CrossOrigin
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1")
