@@ -26,6 +26,7 @@ public class CorsConfig {
         // 허용된 Origin 추가
         corsConfig.addAllowedOriginPattern(frontendUrl);
         corsConfig.addAllowedOriginPattern(gatewayUrl);
+        corsConfig.addAllowedOriginPattern("*");  // 모든 Origin 허용
 
         // 요청 해더 허용
         corsConfig.addAllowedMethod("*");

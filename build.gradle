@@ -55,6 +55,9 @@ dependencies {
 	// Actuatotor
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 
+	// GCP TTS API
+	implementation 'com.google.cloud:google-cloud-texttospeech:2.56.0'
+
 	// Test dependencies
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.mockito:mockito-core:5.4.0'

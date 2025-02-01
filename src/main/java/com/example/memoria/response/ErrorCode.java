@@ -26,9 +26,10 @@ public enum ErrorCode implements ErrorCodeInterface {
 
 
     // 409 Conflict
-    REFERENCE_ALREADY_EXISTS(40901, HttpStatus.CONFLICT, "참조는 문장당 1개만 존재");
+    REFERENCE_ALREADY_EXISTS(40901, HttpStatus.CONFLICT, "참조는 문장당 1개만 존재"),
 
     // 500 Internal Server Error
+    TTS_GENERATION_FAILED(50001, HttpStatus.INTERNAL_SERVER_ERROR, "TTS 생성 중 오류가 발생했습니다.");
 
     private final Integer code;
     private final HttpStatus httpStatus;
