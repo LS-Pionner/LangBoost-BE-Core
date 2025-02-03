@@ -25,6 +25,8 @@ public class TextToSpeechController {
     @Autowired
     private TextToSpeechService textToSpeechService;
 
+    
+    // 문장을 음성 파일로 로컬에 저장
     @PostMapping("/test")
     public ApiResponse<String> generateSpeechTest(@RequestParam String text) {
         try {
@@ -64,6 +66,7 @@ public class TextToSpeechController {
 //    }
 
 
+    // 문장을 음성 파일 바이트 코드로 반환
     @PostMapping("/generate")
     public ResponseEntity<byte[]> generateSpeech(@RequestParam String text) {
         try {
